@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2175954212641566552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8404109208460041267}
+  m_Layer: 0
+  m_Name: LookAtPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8404109208460041267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2175954212641566552}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6442471549037683725}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5937479576373455555
 GameObject:
   m_ObjectHideFlags: 0
@@ -5059,7 +5089,7 @@ GameObject:
   - component: {fileID: 6442471549037683714}
   - component: {fileID: 6442471549037683724}
   - component: {fileID: 7277427463696694220}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5100,6 +5130,7 @@ Transform:
   - {fileID: 6442471547776763644}
   - {fileID: 4153653797049832734}
   - {fileID: 3707999938800589387}
+  - {fileID: 8404109208460041267}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 188.87299, z: 0}
@@ -5146,6 +5177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0cf23561f515e4fbc382d812363865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnSpeed: 45
   currentWeapon: 0
   Weapons:
   - {fileID: 1880625261243408, guid: de656ca8d040d0f45b62a2dd7796a5e5, type: 3}
@@ -5154,6 +5186,8 @@ MonoBehaviour:
   currentWeaponEquipped: {fileID: 0}
   weaponHold: {fileID: 6442471548930203673}
   AimPosition: {fileID: 6197227931515363629}
+  lookAtPosition: {fileID: 8404109208460041267}
+  angleDeltaForShooting: 5
 --- !u!114 &7390375059800247389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5192,7 +5226,7 @@ MonoBehaviour:
     IKPosition: {x: 5.5598564, y: 0.82119536, z: -0.03417453}
     IKPositionWeight: 1
     root: {fileID: 6442471549037683725}
-    target: {fileID: 3707999938800589387}
+    target: {fileID: 8404109208460041267}
     tolerance: 0
     maxIterations: 2
     useRotationLimits: 1

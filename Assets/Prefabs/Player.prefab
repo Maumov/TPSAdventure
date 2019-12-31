@@ -2893,7 +2893,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: f13349cc09b03d447a26b54d406aaa8e, type: 3}
   m_Controller: {fileID: 9100000, guid: 392192036359fbf49b25e1d55dd82e86, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -3473,6 +3473,10 @@ MonoBehaviour:
   viewAngle: {fileID: 4959272093901842470}
   minAngle: 60
   maxAngle: -60
+  horizontal: 0
+  virtualHorizontal: 0
+  vertical: 0
+  virtualVertical: 0
 --- !u!114 &4959272094193624620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4379,6 +4383,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee24d19c031e3da46b6308dc6621ef51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slowdownFactor: 0.1
+  timeToSelectTeleportPosition: 30
+  currentTimeRemainingForTeleport: 0
+  activateTeleportKey: 101
+  isTeleporting: 0
 --- !u!1 &4959272094217809189
 GameObject:
   m_ObjectHideFlags: 0

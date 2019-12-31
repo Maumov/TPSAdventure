@@ -49,7 +49,7 @@ MonoBehaviour:
   lifeSpan: 20
   layerMask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 6400
   OnHitFX: {fileID: 1478237388807894, guid: afb15b2c47760da419d51e3b253b9a97, type: 3}
 --- !u!1001 &7959089149946364692
 PrefabInstance:

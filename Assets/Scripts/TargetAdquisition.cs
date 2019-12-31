@@ -9,7 +9,10 @@ public class TargetAdquisition : MonoBehaviour
         Stats s = other.GetComponentInParent<Stats>();
 
         if(s != null) {
-            GetComponentInParent<EnemyTargeting>().AddTarget(s.transform);
+            if(!s.name.Contains("Enemy")) {
+                GetComponentInParent<EnemyTargeting>().AddTarget(s.transform);
+            }
+ 
         }
         
     }

@@ -9,7 +9,6 @@ public class EnemyTargeting : MonoBehaviour
 
     public Vector3 viewPosition;
     public Transform currentTarget;
-
     public SphereCollider targetingAdquisitionRadius;
     public float adquisitionRadius = 10f;
 
@@ -25,23 +24,20 @@ public class EnemyTargeting : MonoBehaviour
         StartCoroutine(LastPositionOfTarget());
     }
 
-    // Update is called once per frame
-    void Update() {
-
-    }
-
     IEnumerator LastPositionOfTarget() {
         while(enabled) {
             if(currentTarget != null) {
                 currentTargetPosition = currentTarget.position;
             }
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSecondsRealtime(3f);
         }
     }
 
     IEnumerator CurrentTarget() {
         while(enabled) {
             if(posibleTargets.Count <= 0) {
+                currentTarget = null;
+                combat.AimPosition.transform.parent = null;
                 yield return null;
             } else {
                 if(currentTarget != null) {
@@ -58,11 +54,11 @@ public class EnemyTargeting : MonoBehaviour
                         currentTarget = null;
                         combat.AimPosition.transform.parent = null;
                     }
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSecondsRealtime(1f);
                 } else {
                     //Search for next Target
                     FindNewTarget();
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSecondsRealtime(1f);
                 }
             }
         }

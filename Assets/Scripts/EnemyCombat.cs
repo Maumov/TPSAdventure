@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum EnemyType{ Guardian, Patroller}
+public enum EnemyStatus { Normal, Alerted, Searching, Aiming, Shooting }
 public class EnemyCombat : MonoBehaviour
 {
+    public float turnSpeed;
     public int currentWeapon;
     public List<GameObject> Weapons;
     public GameObject currentWeaponEquipped;
@@ -16,6 +20,10 @@ public class EnemyCombat : MonoBehaviour
     Animator anim;
     public GameObject AimPosition;
     EnemyTargeting enemyTargeting;
+    public Transform lookAtPosition;
+
+    public float angleDeltaForShooting = 20f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,8 +45,14 @@ public class EnemyCombat : MonoBehaviour
 
     void TargetInSight() {
         if(enemyTargeting.currentTarget != null) {
-            transform.LookAt(new Vector3(AimPosition.transform.position.x, transform.position.y, AimPosition.transform.position.z));
-            Shoot();
+            Vector3 pos = new Vector3(AimPosition.transform.position.x, transform.position.y, AimPosition.transform.position.z);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(pos - transform.position, Vector3.up), turnSpeed * Time.deltaTime);
+            lookAtPosition.position = new Vector3(lookAtPosition.position.x, AimPosition.transform.position.y, lookAtPosition.position.z);
+
+            Vector3 toTarget = pos - transform.position;
+            if(Vector3.Angle(toTarget, transform.forward) < angleDeltaForShooting) {
+                Shoot();
+            }
         }
     }
 
