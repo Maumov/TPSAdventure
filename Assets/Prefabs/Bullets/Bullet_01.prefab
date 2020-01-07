@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  speed: 100
-  lifeSpan: 20
+  speed: 90
+  lifeSpan: 0.3
   layerMask:
     serializedVersion: 2
     m_Bits: 6400
