@@ -9,7 +9,7 @@ public class PlayerCombat : MonoBehaviour
     public GameObject currentWeaponEquipped;
     Weapon weapon;
     public Transform weaponHold;
-
+    public GameObject slashPlane;
     bool fire1;
     float fire2;
     float scrollWheel;

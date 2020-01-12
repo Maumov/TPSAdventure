@@ -29,13 +29,20 @@ public class Weapon : MonoBehaviour
 
     public bool Fire() {
         if(nextShot < Time.time) {
-            //GameObject go = Instantiate(bullet, muzzle.transform.position, muzzle.transform.rotation);
-            GameObject go = Instantiate(bullet, position, Quaternion.LookRotation(forward, Vector3.up));
-            if(ShootingEffect != null) {
-                ShootingEffect.Play();
+            if(bullet != null) {
+                //is Fire Weapon
+                GameObject go = Instantiate(bullet, position, Quaternion.LookRotation(forward, Vector3.up));
+                if(ShootingEffect != null) {
+                    ShootingEffect.Play();
+                }
+                nextShot = Time.time + cooldown;
+                return true;
+            } else {
+                //is Melee
+                return true;
             }
-            nextShot = Time.time + cooldown;
-            return true;
+            //GameObject go = Instantiate(bullet, muzzle.transform.position, muzzle.transform.rotation);
+            
         } else {
             return false;
         }
