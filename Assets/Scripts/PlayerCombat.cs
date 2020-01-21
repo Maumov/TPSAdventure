@@ -12,6 +12,8 @@ public class PlayerCombat : MonoBehaviour
     public GameObject slashPlane;
     bool fire1;
     float fire2;
+    public bool isAiming;
+    float x, y;
     float scrollWheel;
     RootMotion.FinalIK.FullBodyBipedIK bipedIK;
     RootMotion.FinalIK.AimIK aimIK;
@@ -42,20 +44,34 @@ public class PlayerCombat : MonoBehaviour
         } else {
             fire1 = Input.GetButtonDown("Fire1");
         }
+        if(Input.GetButtonDown("Fire2")) {
+            isAiming = true;
+        }
+        if(Input.GetButtonUp("Fire2")) {
+            isAiming = false;
+        }
         fire2 = Input.GetAxis("Fire2");
         scrollWheel = Input.GetAxis("Mouse ScrollWheel");
     }
 
     void Aim() {
-        if(fire2 > 0.5) {
-            //anim.SetBool("Aiming", true);
-            //aimIK.solver.IKPositionWeight = 1f;
+        if(isAiming) {
             playerCamera.positionOffSet = playerCamera.aim;
         } else {
-            //anim.SetBool("Aiming", false);
-            //aimIK.solver.IKPositionWeight = 0f;
             playerCamera.positionOffSet = playerCamera.unAim;
         }
+        if(currentWeapon == 0) {
+            //is Sword
+            playerCamera.positionOffSet = playerCamera.unAim;
+            Vector2 mousePosition = new Vector2(Input.mousePosition.x / Screen.width, Input.mousePosition.y / Screen.height);
+
+            //Calculate the angle to fire the sword
+
+            ///
+        } else {
+            //is Gun Fire
+        }
+        
     }
 
     void Shoot() {
@@ -72,11 +88,22 @@ public class PlayerCombat : MonoBehaviour
             bipedIK.solver.leftHandEffector.rotationWeight = 0f;
             bipedIK.solver.leftHandEffector.target = null;
         }
+        anim.SetBool("Sword", false);
+        if(currentWeapon == 0) {
+            //  is the Sword
+            currentWeaponEquipped = (GameObject)Instantiate(Weapons[currentWeapon], weaponHold);
+            weapon = currentWeaponEquipped.GetComponent<Weapon>();
+            aimIK.solver.transform = null;
 
-        currentWeaponEquipped = (GameObject)Instantiate(Weapons[currentWeapon], weaponHold);
-        weapon = currentWeaponEquipped.GetComponent<Weapon>();
-        aimIK.solver.transform = weapon.muzzle;
-        SetHandPosition();
+            anim.SetBool("Sword", true);
+        } else {
+            // Gun
+            currentWeaponEquipped = (GameObject)Instantiate(Weapons[currentWeapon], weaponHold);
+            weapon = currentWeaponEquipped.GetComponent<Weapon>();
+            aimIK.solver.transform = weapon.muzzle;
+            SetHandPosition();
+        }
+        
     }
 
     public void ShotFired() {

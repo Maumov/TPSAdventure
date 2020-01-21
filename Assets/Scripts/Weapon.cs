@@ -39,7 +39,7 @@ public class Weapon : MonoBehaviour
                 return true;
             } else {
                 //is Melee
-                return true;
+                return false;
             }
             //GameObject go = Instantiate(bullet, muzzle.transform.position, muzzle.transform.rotation);
             

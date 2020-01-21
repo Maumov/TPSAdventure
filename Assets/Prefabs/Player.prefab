@@ -3530,10 +3530,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentWeapon: 0
   Weapons:
+  - {fileID: 4624878475172978977, guid: 17490afa8e79b1a4fbacf56e7ba85d75, type: 3}
   - {fileID: 1200260564779906, guid: f773cbff2f367b44c806220a733d829d, type: 3}
   - {fileID: 1087233085573688, guid: e4e800a5228c0e74a9737f61e51814eb, type: 3}
   - {fileID: 1880625261243408, guid: de656ca8d040d0f45b62a2dd7796a5e5, type: 3}
-  - {fileID: 40387124556755213, guid: 17490afa8e79b1a4fbacf56e7ba85d75, type: 3}
   currentWeaponEquipped: {fileID: 0}
   weaponHold: {fileID: 4959272093952975408}
   slashPlane: {fileID: 0}

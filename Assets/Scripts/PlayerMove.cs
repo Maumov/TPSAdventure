@@ -23,11 +23,13 @@ public class PlayerMove : MonoBehaviour
 
     //CharacterController characterController;
     Animator anim;
+    PlayerCombat playerCombat;
     // Start is called before the first frame update
     void Start()
     {
         //characterController = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
+        playerCombat = GetComponent<PlayerCombat>();
     }
 
     // Update is called once per frame
@@ -84,21 +86,40 @@ public class PlayerMove : MonoBehaviour
         //characterController.Move(direction * speed * Time.deltaTime);
     }
 
-    void Rotate() {
-        transform.Rotate(transform.up, turn * turnSpeed * Time.unscaledDeltaTime);
-        if(look != 0f ) {
-            float angle = Vector3.SignedAngle(transform.forward, viewAngle.forward, transform.right);
-            if(look < 0f) {
-                if(angle > maxAngle ) {
-                    viewAngle.RotateAround(transform.position, transform.right, look * turnSpeed * Time.unscaledDeltaTime);
+    public void Rotate() {
+        if(playerCombat.currentWeapon != 0) {
+            transform.Rotate(transform.up, turn * turnSpeed * Time.unscaledDeltaTime);
+            if(look != 0f) {
+                float angle = Vector3.SignedAngle(transform.forward, viewAngle.forward, transform.right);
+                if(look < 0f) {
+                    if(angle > maxAngle) {
+                        viewAngle.RotateAround(transform.position, transform.right, look * turnSpeed * Time.unscaledDeltaTime);
+                    }
+                }
+                if(look > 0f) {
+                    if(angle < minAngle) {
+                        viewAngle.RotateAround(transform.position, transform.right, look * turnSpeed * Time.unscaledDeltaTime);
+                    }
                 }
             }
-            if( look > 0f) {
-                if(angle < minAngle) {
-                    viewAngle.RotateAround(transform.position, transform.right, look * turnSpeed * Time.unscaledDeltaTime);
+        } else {
+            if(!playerCombat.isAiming) {
+                transform.Rotate(transform.up, turn * turnSpeed * Time.unscaledDeltaTime);
+                if(look != 0f) {
+                    float angle = Vector3.SignedAngle(transform.forward, viewAngle.forward, transform.right);
+                    if(look < 0f) {
+                        if(angle > maxAngle) {
+                            viewAngle.RotateAround(transform.position, transform.right, look * turnSpeed * Time.unscaledDeltaTime);
+                        }
+                    }
+                    if(look > 0f) {
+                        if(angle < minAngle) {
+                            viewAngle.RotateAround(transform.position, transform.right, look * turnSpeed * Time.unscaledDeltaTime);
+                        }
+                    }
                 }
             }
-        }        
+        }
     }
 
     void Animate() {
